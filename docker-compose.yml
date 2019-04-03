@@ -73,3 +73,11 @@ services:
       - elasticsearch
     depends_on:
       - elasticsearch
+
+  blackfire:
+    image: blackfire/blackfire
+    environment:
+      - BLACKFIRE_SERVER_ID
+      - BLACKFIRE_SERVER_TOKEN
+      # BLACKFIRE_SERVER_ID: SERVER-ID
+      # BLACKFIRE_SERVER_TOKEN: SERVER-TOKEN
