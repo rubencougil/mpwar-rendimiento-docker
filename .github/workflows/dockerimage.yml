@@ -16,6 +16,6 @@ jobs:
         run: docker-compose exec -T php composer install -d /code/test-app
       - name: Test App
         run: |
-          if ! curl http://localhost:8080 | grep -q 'Hello World!'; then
+          if ! curl -s http://localhost:8080 | grep -q 'Hello World!'; then
             exit 1
           fi
