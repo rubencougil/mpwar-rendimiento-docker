@@ -13,7 +13,7 @@ jobs:
       - name: Run docker-compose
         run: docker-compose up -d
       - name: Composer install
-        run: docker-compose exec -T php composer install -d /code/test-app
+        run: sleep 10 && docker-compose exec -T php composer install -d /code/test-app
       - name: Containers status
         run: docker-compose ps && docker-compose logs mysql
       - name: Test App
