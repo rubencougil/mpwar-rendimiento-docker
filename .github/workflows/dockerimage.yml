@@ -10,6 +10,8 @@ jobs:
       - uses: actions/checkout@v1
       - name: Stop MySql
         run: sudo service mysql stop
+      - name: Clean PHP image from registry
+          run: docker-compose -f rm php
       - name: Run docker-compose
         run: docker-compose up -d
       - name: Composer install
