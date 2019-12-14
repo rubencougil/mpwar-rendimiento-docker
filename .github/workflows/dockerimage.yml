@@ -4,15 +4,34 @@ on: [pull_request]
 
 jobs:
 
-  build:
-
+  lint:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v1
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: lint
+        uses: luke142367/Docker-Lint-Action@v1.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TARGET: "./ops/php-fpm/Dockerfile" #space separated list
 
-    - name: Stop MySql
-      run: sudo service mysql stop
+  composer:
+    steps:
+      - name: Composer install
+        uses: docker://composer:1.9.1
+        with:
+          args: --working-dir=./www/html/test-app install
 
-    - name: Execute docker-compose file
-      run: docker-compose up -d
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Stop MySql
+        run: sudo service mysql stop
+      - name: Run docker-compose
+        run: docker-compose up -d
+      - name: Test App
+        run: |
+          if ! curl http://localhost:8080 | grep -q 'Hello World!'; then
+            echo "App healthcheck failed"
+          fi
