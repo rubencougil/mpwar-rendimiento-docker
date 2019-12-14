@@ -57,7 +57,6 @@ services:
     user: root
     environment:
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-      - "bootstrap.memory_lock=true"
     volumes:
       - ./var/elasticsearch/data:/usr/share/elasticsearch/data
     ports:
