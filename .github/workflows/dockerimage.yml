@@ -13,8 +13,9 @@ jobs:
       - name: Run docker-compose
         run: docker-compose up -d
       - name: Composer install
-        run: sleep 10 && docker-compose exec -T php composer install -d /code/test-app
-      - name: Containers status
-        run: docker-compose ps && docker-compose logs mysql
+        run: docker-compose exec -T php composer install -d /code/test-app
       - name: Test App
-        run: curl -s http://localhost:8080
+        run: |
+          if ! curl http://localhost:8080 | grep -q 'Hello World!'; then
+            exit 1
+          fi
