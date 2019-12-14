@@ -3,7 +3,7 @@ version: '3'
 services:
 
   mysql:
-    image: mysql:5.7
+    image: mysql:5.6
     restart: always
     environment:
       MYSQL_DATABASE: 'db'
@@ -14,6 +14,11 @@ services:
       - '3306:3306'
     volumes:
       - ./var/mysql:/var/lib/mysql
+    healthcheck:
+      test: "/usr/bin/mysql --user=root --password=password --execute \"SHOW DATABASES;\""
+      interval: 2s
+      timeout: 20s
+      retries: 3
 
   nginx:
     image: nginx:latest
@@ -22,19 +27,12 @@ services:
     volumes:
       - ./www/html:/code
       - ./etc/nginx/default.conf:/etc/nginx/conf.d/default.conf
-    links:
-      - php
 
   php:
     build: ./ops/php-fpm
     volumes:
       - ./www/html:/code
       - ./etc/php/php.ini:/usr/local/etc/php/conf.d/php.ini
-    links:
-      - mysql
-      - redis
-      - rabbitmq
-      - elasticsearch
 
   redis:
     image: redis
@@ -56,12 +54,19 @@ services:
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:6.7.0
+    user: root
     environment:
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "TAKE_FILE_OWNERSHIP=1"
     volumes:
       - ./var/elasticsearch/data:/usr/share/elasticsearch/data
     ports:
       - "9200:9200"
+    healthcheck:
+      test: ["CMD-SHELL", "curl --silent --fail localhost:9200/_cluster/health || exit 1"]
+      interval: 30s
+      timeout: 30s
+      retries: 3
 
   kibana:
     image: docker.elastic.co/kibana/kibana:6.7.0
@@ -69,10 +74,13 @@ services:
       - "5601:5601"
     environment:
       ELASTICSEARCH_HOSTS: "http://elasticsearch:9200"
-    links:
-      - elasticsearch
     depends_on:
       - elasticsearch
+    healthcheck:
+      test: ["CMD", "curl", "-s", "-f", "http://localhost:5601/"]
+      interval: 30s
+      timeout: 30s
+      retries: 3
 
   blackfire:
     image: blackfire/blackfire
