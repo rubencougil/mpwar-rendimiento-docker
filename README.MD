@@ -1,5 +1,7 @@
 # MPWAR (Rendimiento en Aplicaciones web)
 
+[![Actions Status](https://github.com/rubencougil/mpwar-rendimiento-docker/workflows/Docker%20Image%20CI/badge.svg)](https://github.com/rubencougil/mpwar-rendimiento-docker/actions)
+
 ## Instalación
 
 - [Instalar Docker](https://docs.docker.com/install/)
