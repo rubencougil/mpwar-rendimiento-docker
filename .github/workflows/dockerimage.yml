@@ -16,9 +16,9 @@ jobs:
         run: sudo service mysql stop
       - name: Prepare data dir for Elasticsearch
         run: |
-          mkdir -p ./var/elasticsearch/data
-          chmod g+rwx ./var/elasticsearch/data
-          chgrp 1000 ./var/elasticsearch/data
+          sudo mkdir -p ./var/elasticsearch/data
+          sudo chmod g+rwx ./var/elasticsearch/data
+          sudo chgrp 1000 ./var/elasticsearch/data
       - name: Run docker-compose
         run: docker-compose up -d
       - name: Composer install
