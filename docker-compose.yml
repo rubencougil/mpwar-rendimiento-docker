@@ -56,7 +56,7 @@ services:
     image: docker.elastic.co/elasticsearch/elasticsearch:6.7.0
     user: root
     environment:
-      - "ES_JAVA_OPTS=-Xms2g -Xmx2g"
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
       - "TAKE_FILE_OWNERSHIP=1"
     volumes:
       - ./var/elasticsearch/data:/usr/share/elasticsearch/data
