@@ -16,6 +16,7 @@ jobs:
           TARGET: "./ops/php-fpm/Dockerfile" #space separated list
 
   composer:
+    runs-on: ubuntu-latest
     steps:
       - name: Composer install
         uses: docker://composer:1.9.1
