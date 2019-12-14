@@ -7,7 +7,7 @@ RUN pecl install -o -f redis \
     && docker-php-ext-enable redis \
     && apt -y install curl git unzip \
     && curl -sS https://getcomposer.org/installer -o composer-setup.php \
-    && php -r "if (hash_file('SHA384', 'composer-setup.php') === '$HASH') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+    && php composer-setup.php --install-dir=/usr/bin --filename=composer
 
 RUN version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") \
     && curl -A "Docker" -o /tmp/blackfire-probe.tar.gz -D - -L -s https://blackfire.io/api/v1/releases/probe/php/linux/amd64/$version \
