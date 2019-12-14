@@ -15,4 +15,4 @@ jobs:
       - name: Composer install
         run: docker-compose exec -T php composer install -d /code/test-app
       - name: Test App
-        run: curl -s http://localhost:8080
+        run: sleep 10 && curl -s http://localhost:8080
