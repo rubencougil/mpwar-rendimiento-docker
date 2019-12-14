@@ -11,11 +11,11 @@ jobs:
       - name: Stop MySql
         run: sudo service mysql stop
       - name: Run docker-compose
-        run: docker-compose up -d
+        run: docker-compose up -d && sleep 10
       - name: Composer install
         run: docker-compose exec -T php composer install -d /code/test-app
       - name: Test App
         run: |
-          if ! curl http://localhost:8080 | grep -q 'Hello World!'; then
+          if ! curl -s http://localhost:8080 | grep -q 'Hello World!'; then
             exit 1
           fi
