@@ -14,11 +14,6 @@ jobs:
       - uses: actions/checkout@v1
       - name: Stop MySql
         run: sudo service mysql stop
-      - name: Prepare data dir for Elasticsearch
-        run: |
-          sudo mkdir -p ./var/elasticsearch/data/nodes
-          sudo chmod g+rwx ./var/elasticsearch/data/nodes
-          sudo chgrp 1000 ./var/elasticsearch/data/nodes
       - name: Run docker-compose
         run: docker-compose up -d
       - name: Composer install
