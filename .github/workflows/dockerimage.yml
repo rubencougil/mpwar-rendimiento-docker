@@ -10,5 +10,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+
+    - name: Stop MySql
+      run: sudo service mysql stop
+
     - name: Execute docker-compose file
       run: docker-compose up -d
