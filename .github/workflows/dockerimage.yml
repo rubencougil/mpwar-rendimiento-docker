@@ -14,5 +14,7 @@ jobs:
         run: docker-compose up -d
       - name: Composer install
         run: docker-compose exec -T php composer install -d /code/test-app
+      - name: Containers status
+        run: docker-compose ps
       - name: Test App
-        run: sleep 10 && curl -s http://localhost:8080
+        run: curl -s http://localhost:8080
