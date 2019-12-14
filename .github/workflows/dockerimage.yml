@@ -21,7 +21,9 @@ jobs:
       - name: Wait
         run: sleep 15
       - name: Elastic
-        run: docker-compose logs elasticsearch
+        run: |
+          sudo sysctl -w vm.max_map_count=262144
+          docker-compose logs elasticsearch
       - name: Test App
         run: |
           if ! curl -s http://localhost:8080 | grep -q 'Hello World!'; then
