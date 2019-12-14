@@ -15,6 +15,6 @@ jobs:
       - name: Composer install
         run: docker-compose exec -T php composer install -d /code/test-app
       - name: Containers status
-        run: docker-compose ps
+        run: docker-compose ps && docker-compose logs mpwar-rendimiento-docker_mysql_1
       - name: Test App
         run: curl -s http://localhost:8080
