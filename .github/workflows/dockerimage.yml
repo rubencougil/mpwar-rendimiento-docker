@@ -11,7 +11,7 @@ jobs:
       - name: Stop MySql
         run: sudo service mysql stop
       - name: Clean PHP image from registry
-        run: docker-compose -f rm php
+        run: docker-compose rm -f php
       - name: Run docker-compose
         run: docker-compose up -d
       - name: Composer install
