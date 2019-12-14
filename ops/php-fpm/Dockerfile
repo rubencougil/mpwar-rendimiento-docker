@@ -5,7 +5,7 @@ RUN apt-get update && docker-php-ext-install mysqli pdo pdo_mysql sockets bcmath
 RUN pecl install -o -f redis \
     && rm -rf /tmp/pear \
     && docker-php-ext-enable redis \
-    && sudo apt-get install php-bcmath
+    && apt-get install php-bcmath
 
 RUN version=$(php -r "echo PHP_MAJOR_VERSION.PHP_MINOR_VERSION;") \
     && curl -A "Docker" -o /tmp/blackfire-probe.tar.gz -D - -L -s https://blackfire.io/api/v1/releases/probe/php/linux/amd64/$version \
