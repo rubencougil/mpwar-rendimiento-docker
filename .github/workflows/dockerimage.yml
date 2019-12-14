@@ -10,8 +10,6 @@ jobs:
       - uses: actions/checkout@v1
       - name: Stop MySql
         run: sudo service mysql stop
-      - name: Docker System Prune
-        run: docker system prune -a -f
       - name: Run docker-compose
         run: docker-compose up -d
       - name: Composer install
