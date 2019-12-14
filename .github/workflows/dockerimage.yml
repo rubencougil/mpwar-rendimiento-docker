@@ -1,6 +1,6 @@
 name: Docker Image CI
 
-on: [merge, pull_request]
+on: [pull_request]
 
 jobs:
 
