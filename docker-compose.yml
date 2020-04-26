@@ -85,7 +85,7 @@ services:
   blackfire:
     image: blackfire/blackfire
     environment:
-      - BLACKFIRE_SERVER_ID
-      - BLACKFIRE_SERVER_TOKEN
-      # BLACKFIRE_SERVER_ID: SERVER-ID
-      # BLACKFIRE_SERVER_TOKEN: SERVER-TOKEN
+      # - BLACKFIRE_CLIENT_ID: xxx
+      # - BLACKFIRE_CLIENT_TOKEN: xxx
+      # - BLACKFIRE_SERVER_ID: xxx
+      # - BLACKFIRE_SERVER_TOKEN: xxx
