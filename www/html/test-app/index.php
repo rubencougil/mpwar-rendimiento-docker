@@ -18,7 +18,7 @@ use TestApp\HomeController;
 
 /*
  * ----------------
- * | dependencies |
+ * | Dependencies |
  * ----------------
  */
 $db = new PDO('mysql:dbname=db;host=mysql', 'user', 'password');
@@ -37,7 +37,7 @@ $dc = [
 
 /*
  * -----------
- * | routing |
+ * | Routing |
  * -----------
  */
 
@@ -62,5 +62,10 @@ try {
     $response = new Response('Not found!', Response::HTTP_NOT_FOUND);
 }
 
-$response->send();
+/*
+ * ------------
+ * | Response |
+ * ------------
+ */
 
+$response->send();
