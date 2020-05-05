@@ -40,7 +40,6 @@ $dc = [
  * | Routing |
  * -----------
  */
-
 // Add your URL routes here
 $users = new Route('/',           ['controller' => HomeController::class]);
 $home  = new Route('/users/{id}', ['controller' => UserController::class]);
