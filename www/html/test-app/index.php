@@ -40,24 +40,24 @@ $dc = [
  * | Routing |
  * -----------
  */
-// Add your URL routes here
-$users = (new Route('/',           ['controller' => HomeController::class]))->setMethods([Request::METHOD_GET]);
-$home  = (new Route('/users/{id}', ['controller' => UserController::class]))->setMethods([Request::METHOD_GET]);
-
-// ... and don't forget to add the route to the following collection
-$routes = new RouteCollection();
-$routes->add('home', $home);
-$routes->add('users', $users);
+$routes = [
+    'users' => (new Route('/',           ['controller' => HomeController::class]))->setMethods([Request::METHOD_GET]),
+    'home'  => (new Route('/users/{id}', ['controller' => UserController::class]))->setMethods([Request::METHOD_GET])
+];
 
 /*
  * ------------
  * | Dispatch |
  * ------------
  */
+$rc = new RouteCollection();
+foreach ($routes as $key => $route) {
+    $rc->add($key, $route);
+}
+$matcher = new UrlMatcher($rc, $context);
 $context = new RequestContext();
 $request = Request::createFromGlobals();
 $context->fromRequest($request);
-$matcher = new UrlMatcher($routes, $context);
 
 try {
     $attributes = $matcher->match($context->getPathInfo());
