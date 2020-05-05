@@ -42,30 +42,35 @@ $dc = [
  */
 
 // Add your URL routes here
-$home  = new Route('/users/', ['controller' => UserController::class]);
-$users = new Route('/',       ['controller' => HomeController::class]);
+$users = new Route('/',           ['controller' => HomeController::class]);
+$home  = new Route('/users/{id}', ['controller' => UserController::class]);
 
 // ... and don't forget to add the route to the following collection
 $routes = new RouteCollection();
 $routes->add('home', $home);
 $routes->add('users', $users);
 
+/*
+ * ------------
+ * | Dispatch |
+ * ------------
+ */
 $context = new RequestContext();
-$context->fromRequest(Request::createFromGlobals());
+$request = Request::createFromGlobals();
+$context->fromRequest($request);
 $matcher = new UrlMatcher($routes, $context);
 
 try {
+    $attributes = $matcher->match($context->getPathInfo());
     $ctrlName = $matcher->match($context->getPathInfo())['controller'];
     $ctrl = new $ctrlName($dc);
-    $response = $ctrl(Request::createFromGlobals());
+    $response = $ctrl(Request::create(
+        $context->getBaseUrl(),
+        $context->getMethod(),
+        $matcher->match($context->getPathInfo())
+    ));
 } catch (ResourceNotFoundException $e) {
     $response = new Response('Not found!', Response::HTTP_NOT_FOUND);
 }
-
-/*
- * ------------
- * | Response |
- * ------------
- */
 
 $response->send();

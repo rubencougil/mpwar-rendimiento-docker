@@ -9,6 +9,6 @@ class UserController extends BaseController
 {
     public function __invoke(Request $request): Response
     {
-        return Response::create('hi user', 200);
+        return Response::create("hi {$request->get('id')}", 200);
     }
 }
