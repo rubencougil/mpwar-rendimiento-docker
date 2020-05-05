@@ -41,8 +41,8 @@ $dc = [
  * -----------
  */
 // Add your URL routes here
-$users = new Route('/',           ['controller' => HomeController::class]);
-$home  = new Route('/users/{id}', ['controller' => UserController::class]);
+$users = (new Route('/',           ['controller' => HomeController::class]))->setMethods([Request::METHOD_GET]);
+$home  = (new Route('/users/{id}', ['controller' => UserController::class]))->setMethods([Request::METHOD_GET]);
 
 // ... and don't forget to add the route to the following collection
 $routes = new RouteCollection();
