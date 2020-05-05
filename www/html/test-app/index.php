@@ -41,8 +41,8 @@ $dc = [
  * -----------
  */
 $routes = [
-    'users' => (new Route('/',           ['controller' => HomeController::class]))->setMethods([Request::METHOD_GET]),
-    'home'  => (new Route('/users/{id}', ['controller' => UserController::class]))->setMethods([Request::METHOD_GET])
+    'home'   => (new Route('/',           ['controller' => HomeController::class]))->setMethods([Request::METHOD_GET]),
+    'users'  => (new Route('/users/{id}', ['controller' => UserController::class]))->setMethods([Request::METHOD_GET])
 ];
 
 /*
