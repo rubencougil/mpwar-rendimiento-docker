@@ -54,8 +54,8 @@ $rc = new RouteCollection();
 foreach ($routes as $key => $route) {
     $rc->add($key, $route);
 }
-$matcher = new UrlMatcher($rc, $context);
 $context = new RequestContext();
+$matcher = new UrlMatcher($rc, $context);
 $request = Request::createFromGlobals();
 $context->fromRequest($request);
 
