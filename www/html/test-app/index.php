@@ -21,18 +21,18 @@ use TestApp\HomeController;
  * | Dependencies |
  * ----------------
  */
-$db = new PDO('mysql:dbname=db;host=mysql', 'user', 'password');
+$mysql = new PDO('mysql:dbname=db;host=mysql', 'user', 'password');
 $redis = new Redis();
 $redis->connect('redis');
-$connection = new AMQPStreamConnection('rabbitmq', 5672, 'rabbitmq', 'rabbitmq');
-$elastic = (new ElasticaClient(['host' => 'elasticsearch', 'port' => 9200]));
-$elastic->getVersion();
+$rabbitmq = new AMQPStreamConnection('rabbitmq', 5672, 'rabbitmq', 'rabbitmq');
+$elasticsearch = (new ElasticaClient(['host' => 'elasticsearch', 'port' => 9200]));
+$elasticsearch->getVersion();
 
 $dc = [
-    'mysql' => $db,
+    'mysql' => $mysql,
     'redis' => $redis,
-    'rabbitmq' => $connection,
-    'elasticsearch' => $elastic
+    'rabbitmq' => $rabbitmq,
+    'elasticsearch' => $elasticsearch
 ];
 
 /*
