@@ -41,8 +41,9 @@ $dc = [
  * -----------
  */
 $routes = [
-    'home'   => (new Route('/',           ['controller' => HomeController::class]))->setMethods([Request::METHOD_GET]),
-    'users'  => (new Route('/users/{id}', ['controller' => UserController::class]))->setMethods([Request::METHOD_POST])
+    'home'      => (new Route('/',           ['controller' => HomeController::class]))->setMethods([Request::METHOD_GET]),
+    'get_user'  => (new Route('/users/',     ['controller' => UserController::class]))->setMethods([Request::METHOD_GET]),
+    'post_user' => (new Route('/users/{id}', ['controller' => UserController::class, 'method' => 'create']))->setMethods([Request::METHOD_POST]),
 ];
 
 /*
@@ -64,7 +65,11 @@ try {
     $ctrlName = $matcher->match($context->getPathInfo())['controller'];
     $ctrl = new $ctrlName($dc);
     $request->attributes->add($attributes);
-    $response = $ctrl($request);
+    if (isset($matcher->match($context->getPathInfo())['method'])) {
+        $response = $ctrl->{$matcher->match($context->getPathInfo())['method']}($request);
+    } else {
+        $response = $ctrl($request);
+    }
 } catch (ResourceNotFoundException $e) {
     $response = new Response('Not found!', Response::HTTP_NOT_FOUND);
 }
