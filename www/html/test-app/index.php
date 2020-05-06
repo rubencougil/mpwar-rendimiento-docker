@@ -42,7 +42,7 @@ $dc = [
  */
 $routes = [
     'home'   => (new Route('/',           ['controller' => HomeController::class]))->setMethods([Request::METHOD_GET]),
-    'users'  => (new Route('/users/{id}', ['controller' => UserController::class]))->setMethods([Request::METHOD_GET])
+    'users'  => (new Route('/users/{id}', ['controller' => UserController::class]))->setMethods([Request::METHOD_POST])
 ];
 
 /*
@@ -63,11 +63,8 @@ try {
     $attributes = $matcher->match($context->getPathInfo());
     $ctrlName = $matcher->match($context->getPathInfo())['controller'];
     $ctrl = new $ctrlName($dc);
-    $response = $ctrl(Request::create(
-        $context->getBaseUrl(),
-        $context->getMethod(),
-        $matcher->match($context->getPathInfo())
-    ));
+    $request->attributes->add($attributes);
+    $response = $ctrl($request);
 } catch (ResourceNotFoundException $e) {
     $response = new Response('Not found!', Response::HTTP_NOT_FOUND);
 }
