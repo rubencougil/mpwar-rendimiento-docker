@@ -2,3 +2,4 @@ vendor
 /var
 .idea
 composer.phar
+.env
