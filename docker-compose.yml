@@ -84,8 +84,8 @@ services:
 
   blackfire:
     image: blackfire/blackfire
-    #environment:
-      #BLACKFIRE_CLIENT_ID: "xxxxx"
-      #BLACKFIRE_CLIENT_TOKEN: "xxxxx"
-      #BLACKFIRE_SERVER_ID: "xxxxxx"
-      #BLACKFIRE_SERVER_TOKEN: "xxxxxx"
+    environment:
+      BLACKFIRE_CLIENT_ID: ${BLACKFIRE_CLIENT_ID}
+      BLACKFIRE_CLIENT_TOKEN: ${BLACKFIRE_CLIENT_TOKEN}
+      BLACKFIRE_SERVER_ID: ${BLACKFIRE_SERVER_ID}
+      BLACKFIRE_SERVER_TOKEN: ${BLACKFIRE_SERVER_TOKEN}
