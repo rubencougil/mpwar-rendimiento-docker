@@ -1,9 +1,13 @@
 {
   "require": {
     "php-amqplib/php-amqplib": ">=2.6.1",
-    "ruflin/elastica": "dev-master",
     "symfony/http-foundation": "^5.0",
-    "symfony/routing": "^5.0"
+    "symfony/routing": "^5.0",
+    "ext-curl": "*",
+    "ext-json": "*",
+    "elasticsearch/elasticsearch": "^7.7",
+    "ext-redis": "*",
+    "ext-pdo": "*"
   },
   "autoload": {
     "psr-4": { "TestApp\\": "src/" }

@@ -3,7 +3,7 @@
 require_once __DIR__ . '/vendor/autoload.php';
 
 use PhpAmqpLib\Connection\AMQPStreamConnection;
-use Elastica\Client as ElasticaClient;
+use Elasticsearch\ClientBuilder;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Routing\Matcher\UrlMatcher;
@@ -25,8 +25,7 @@ $mysql = new PDO('mysql:dbname=db;host=mysql', 'user', 'password');
 $redis = new Redis();
 $redis->connect('redis');
 $rabbitmq = new AMQPStreamConnection('rabbitmq', 5672, 'rabbitmq', 'rabbitmq');
-$elasticsearch = (new ElasticaClient(['host' => 'elasticsearch', 'port' => 9200]));
-$elasticsearch->getVersion();
+$elasticsearch = $client = ClientBuilder::create()->setHosts(["elasticsearch:9200"])->build();
 
 $dc = [
     'mysql' => $mysql,
