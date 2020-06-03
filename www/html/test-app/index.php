@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/vendor/autoload.php';
 
+use GuzzleHttp\Client as GuzzleClient;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use Elasticsearch\ClientBuilder;
 use Symfony\Component\HttpFoundation\Response;
@@ -26,12 +27,14 @@ $redis = new Redis();
 $redis->connect('redis');
 $rabbitmq = new AMQPStreamConnection('rabbitmq', 5672, 'rabbitmq', 'rabbitmq');
 $elasticsearch = $client = ClientBuilder::create()->setHosts(["elasticsearch:9200"])->build();
+$guzzle = new GuzzleClient();
 
 $dc = [
     'mysql' => $mysql,
     'redis' => $redis,
     'rabbitmq' => $rabbitmq,
-    'elasticsearch' => $elasticsearch
+    'elasticsearch' => $elasticsearch,
+    'guzzle' => $guzzle
 ];
 
 /*
