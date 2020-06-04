@@ -45,3 +45,8 @@ Para comprobar la distribución de los documentos en el índice:
 ```
 curl http://127.0.0.1:9200/_cat/indices?v
 ```
+
+Se ha añadido un servicio web extra que servirá como UI para gestionar el cluster (ya que la herramienta oficial 
+integrada con Kibana necesita X-Pack). Puedes acceder al servicio a través del navegador en:
+
+`http://localhost:9100`
