@@ -47,7 +47,7 @@ $dc = [
 $routes = [
     'home'      => (new Route('/',           ['controller' => HomeController::class]))->setMethods([Request::METHOD_GET]),
     'get_user'  => (new Route('/users/',     ['controller' => UserController::class]))->setMethods([Request::METHOD_GET]),
-    'post_user' => (new Route('/users/{id}', ['controller' => UserController::class, 'method' => 'create']))->setMethods([Request::METHOD_POST]),
+    'post_user' => (new Route('/users/{id}', ['controller' => UserController::class, 'method' => 'get']))->setMethods([Request::METHOD_GET]),
 ];
 
 /*
