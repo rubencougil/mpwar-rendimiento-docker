@@ -9,6 +9,6 @@ class HomeController extends BaseController
 {
     public function __invoke(Request $request): Response
     {
-        return Response::create('Hello World!', 200);
+        return new Response('Hello World!', 200);
     }
 }

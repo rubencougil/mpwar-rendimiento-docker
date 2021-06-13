@@ -5,7 +5,7 @@ namespace TestApp;
 class BaseController
 {
     /** @var array */
-    protected $dc;
+    protected array $dc;
 
     public function __construct(array $dc)
     {

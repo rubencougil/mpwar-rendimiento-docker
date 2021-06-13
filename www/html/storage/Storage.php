@@ -5,10 +5,10 @@ namespace Storage;
 class Storage implements StorageInterface
 {
     /** @var StorageInterface */
-    private $db;
+    private StorageInterface $db;
 
     /** @var StorageInterface */
-    private $cache;
+    private StorageInterface $cache;
 
     public function __construct(StorageInterface $db, StorageInterface $cache)
     {
@@ -24,7 +24,7 @@ class Storage implements StorageInterface
         return $this->db->get($id);
     }
 
-    public function create(array $params)
+    public function create(array $params): void
     {
         $this->db->create($params);
         $this->cache->create($params);
