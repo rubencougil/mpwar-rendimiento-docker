@@ -16,15 +16,15 @@ jobs:
       - name: Stop MySql
         run: sudo service mysql stop
 
-     - name: Make envfile
-       uses: SpicyPizza/create-envfile@v1
-       with:
-         envkey_DEBUG: false
-         envkey_BLACKFIRE_CLIENT_TOKEN: ${{ secrets.BLACKFIRE_CLIENT_TOKEN }}
-         envkey_BLACKFIRE_CLIENT_ID: ${{ secrets.BLACKFIRE_CLIENT_ID }}
-         envkey_BLACKFIRE_SERVER_TOKEN: ${{ secrets.BLACKFIRE_SERVER_TOKEN }}
-         envkey_BLACKFIRE_SERVER_ID: ${{ secrets.BLACKFIRE_SERVER_ID }}
-         file_name: .env
+      - name: Make envfile
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          envkey_DEBUG: false
+          envkey_BLACKFIRE_CLIENT_TOKEN: ${{ secrets.BLACKFIRE_CLIENT_TOKEN }}
+          envkey_BLACKFIRE_CLIENT_ID: ${{ secrets.BLACKFIRE_CLIENT_ID }}
+          envkey_BLACKFIRE_SERVER_TOKEN: ${{ secrets.BLACKFIRE_SERVER_TOKEN }}
+          envkey_BLACKFIRE_SERVER_ID: ${{ secrets.BLACKFIRE_SERVER_ID }}
+          file_name: .env
 
       - name: Configure VM for Elasticsearch
         run: sudo sysctl -w vm.max_map_count=262144
