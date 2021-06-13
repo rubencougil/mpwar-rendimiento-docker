@@ -12,18 +12,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+
       - name: Stop MySql
         run: sudo service mysql stop
+
       - name: Configure VM for Elasticsearch
         run: sudo sysctl -w vm.max_map_count=262144
+
       - name: Run docker-compose
         run: docker-compose up -d
+
       - name: Composer install
         run: docker-compose exec -T php composer install -d /code/test-app
+
       - name: Wait
         run: sleep 15
+
       - name: Test App
         run: |
           if ! curl -s http://localhost:8080 | grep -q 'Hello World!'; then
             exit 1
           fi
+
+      - name: Profile with Blackfire
+        run: docker-compose exec blackfire blackfire curl http://nginx:80
