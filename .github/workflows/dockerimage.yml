@@ -35,4 +35,4 @@ jobs:
           fi
 
       - name: Profile with Blackfire
-        run: COMPOSE_INTERACTIVE_NO_CLI=1 docker-compose exec blackfire blackfire curl http://nginx:80
+        run: docker-compose exec -T blackfire blackfire curl http://nginx:80

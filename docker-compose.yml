@@ -84,6 +84,7 @@ services:
 
   blackfire:
     image: blackfire/blackfire:2
+    privileged: true
     ports: ["8307"]
     environment:
       BLACKFIRE_CLIENT_ID: ${BLACKFIRE_CLIENT_ID}
