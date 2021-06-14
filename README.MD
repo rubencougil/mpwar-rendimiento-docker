@@ -6,7 +6,7 @@
 
 - [Instalar Docker](https://docs.docker.com/install/)
 - [Instalar docker-compose](https://docs.docker.com/compose/install/)
-- Exportar las variables de entorno necesarias para el [correcto funcionamiento de Blackfire](https://blackfire.io/docs/integrations/docker) y crear el alias `blackfire-curl`. Esta configuración se encuentra en el archivo `.env`
+- Exportar las variables de entorno necesarias para el [correcto funcionamiento de Blackfire](https://blackfire.io/docs/integrations/docker) y crear el alias `blackfire-curl`. Esta configuración se encuentra en el archivo `.env.dist`. Es necesario renombrar `env.dist` a `.env` y completar los valores.
 - Ejecutar `docker-compose up -d`
 
 ## Servicios
