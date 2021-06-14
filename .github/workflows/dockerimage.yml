@@ -30,7 +30,10 @@ jobs:
         run: sudo sysctl -w vm.max_map_count=262144
 
       - name: Run docker-compose
-        run: docker-compose up -d
+        run: |
+          docker-compose -f docker-compose.yml up -d
+          docker-compose -f docker-compose-es.yml up -d
+        |
 
       - name: Composer install
         run: docker-compose exec -T php composer install -d /code/test-app
