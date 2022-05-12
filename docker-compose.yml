@@ -21,9 +21,12 @@ services:
     volumes:
       - ./www/html:/code
       - ./ops/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    links: [php]
 
   php:
     build: ./ops/php-fpm
+    image: rendimiento-php:latest
+    container_name: php
     volumes:
       - ./www/html:/code
 

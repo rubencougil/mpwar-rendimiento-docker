@@ -18,6 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
 // If you add a new route don't forget to include its namespace
 use Test\UserController;
 use Test\HomeController;
+use Test\RedisController;
 
 /*
  * ----------------
@@ -45,9 +46,9 @@ $dc = [
  * -----------
  */
 $routes = [
-    'home'      => (new Route('/',           ['controller' => HomeController::class]))->setMethods([Request::METHOD_GET]),
-    'get_user'  => (new Route('/users/',     ['controller' => UserController::class]))->setMethods([Request::METHOD_GET]),
-    'post_user' => (new Route('/users/{id}', ['controller' => UserController::class, 'method' => 'get']))->setMethods([Request::METHOD_GET]),
+    'home'      => (new Route('/',            ['controller' => HomeController::class]))->setMethods([Request::METHOD_GET]),
+    'get_user' => (new Route('/users/{name}', ['controller' => UserController::class, 'method' => 'get']))->setMethods([Request::METHOD_GET]),
+    'redis'      => (new Route('/redis/{key}/{value}',      ['controller' => RedisController::class]))->setMethods([Request::METHOD_GET]),
 ];
 
 /*
