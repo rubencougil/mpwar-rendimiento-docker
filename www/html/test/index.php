@@ -6,7 +6,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use GuzzleHttp\Client as GuzzleClient;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
-use Elasticsearch\ClientBuilder;
+use \Elastic\Elasticsearch\ClientBuilder;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Routing\Matcher\UrlMatcher;
@@ -15,9 +15,9 @@ use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 use Symfony\Component\HttpFoundation\Request;
 
-// If you add a new route don't forget to include it's namespace
-use TestApp\UserController;
-use TestApp\HomeController;
+// If you add a new route don't forget to include its namespace
+use Test\UserController;
+use Test\HomeController;
 
 /*
  * ----------------

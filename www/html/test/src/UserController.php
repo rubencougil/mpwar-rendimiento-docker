@@ -1,6 +1,6 @@
 <?php
 
-namespace TestApp;
+namespace Test;
 
 use Blackfire\Client;
 use Symfony\Component\HttpFoundation\Request;
