@@ -1,1 +1,51 @@
-name: CIon:  push:    branches: [main]  pull_request:    branches: [main]jobs:  build:    name: CI    runs-on: ubuntu-latest    steps:      - uses: actions/checkout@v1      - name: Stop MySql        run: "sudo service mysql stop"      - name: Make envfile        uses: SpicyPizza/create-envfile@v1        with:          envkey_DEBUG: false          envkey_BLACKFIRE_CLIENT_TOKEN: ${{ secrets.BLACKFIRE_CLIENT_TOKEN }}          envkey_BLACKFIRE_CLIENT_ID: ${{ secrets.BLACKFIRE_CLIENT_ID }}          envkey_BLACKFIRE_SERVER_TOKEN: ${{ secrets.BLACKFIRE_SERVER_TOKEN }}          envkey_BLACKFIRE_SERVER_ID: ${{ secrets.BLACKFIRE_SERVER_ID }}          file_name: .env      - name: Configure VM for Elasticsearch        run: "sudo sysctl -w vm.max_map_count=262144"      - name: Run docker-compose        run: |          docker-compose -f docker-compose.yml up -d        |      - name: Composer install        run: "docker-compose exec -T php composer install -d /code/test-app"      - name: Wait        run: sleep 30      - name: Test App        run: |          if ! curl -s http://localhost:8080 | grep -q 'Hello World!'; then            exit 1          fi      - name: Profile with Blackfire        run: "docker-compose exec -T blackfire blackfire curl http://nginx:80"
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+
+  build:
+    name: CI
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Stop MySql
+        run: "sudo service mysql stop"
+
+      - name: Make envfile
+        uses: SpicyPizza/create-envfile@v1
+        with:
+          envkey_DEBUG: false
+          envkey_BLACKFIRE_CLIENT_TOKEN: ${{ secrets.BLACKFIRE_CLIENT_TOKEN }}
+          envkey_BLACKFIRE_CLIENT_ID: ${{ secrets.BLACKFIRE_CLIENT_ID }}
+          envkey_BLACKFIRE_SERVER_TOKEN: ${{ secrets.BLACKFIRE_SERVER_TOKEN }}
+          envkey_BLACKFIRE_SERVER_ID: ${{ secrets.BLACKFIRE_SERVER_ID }}
+          file_name: .env
+
+      - name: Configure VM for Elasticsearch
+        run: "sudo sysctl -w vm.max_map_count=262144"
+
+      - name: Run docker-compose
+        run: |
+          docker-compose -f docker-compose.yml up -d
+        |
+
+      - name: Composer install
+        run: "docker-compose exec -T php composer install -d /code/test-app"
+
+      - name: Wait
+        run: sleep 30
+
+      - name: Test App
+        run: |
+          if ! curl -s http://localhost:8080 | grep -q 'Hello World!'; then
+            exit 1
+          fi
+
+      - name: Profile with Blackfire
+        run: "docker-compose exec -T blackfire blackfire curl http://nginx:80"
