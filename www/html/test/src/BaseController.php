@@ -1,6 +1,6 @@
 <?php
 
-namespace TestApp;
+namespace Test;
 
 class BaseController
 {
