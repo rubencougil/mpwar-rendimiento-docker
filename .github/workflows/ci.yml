@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: CI
 
 on:
   push:
@@ -9,6 +9,7 @@ on:
 jobs:
 
   build:
+    name: CI
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -32,14 +33,13 @@ jobs:
       - name: Run docker-compose
         run: |
           docker-compose -f docker-compose.yml up -d
-          docker-compose -f docker-compose-es.yml up -d
         |
 
       - name: Composer install
         run: docker-compose exec -T php composer install -d /code/test-app
 
       - name: Wait
-        run: sleep 15
+        run: sleep 30
 
       - name: Test App
         run: |
