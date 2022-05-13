@@ -53,7 +53,7 @@ jobs:
 
       - name: Test RabbitMQ
         run: |
-          if ! curl -s http://localhost:8080/rabbitmq | grep -q 'NOOO!'; then
+          if ! curl -s http://localhost:8080/rabbitmq | grep -q 'RabbitMQ!'; then
             exit 1
           fi
 
