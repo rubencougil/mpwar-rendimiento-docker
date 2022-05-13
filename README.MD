@@ -59,8 +59,10 @@
 - Config en `ops/redis/redis.conf`
 - Para habilitar la persistencia, comentar la línea `save ""` en `ops/redis/redis.conf`
 
+### 6. RabbitMQ
 
-
+- Puerto: `5672`
+- Dashboard: `http://localhost:15672`
 
 - RabbitMQ: 15672
 - Elasticsearch: 9200

@@ -19,6 +19,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Test\UserController;
 use Test\HomeController;
 use Test\RedisController;
+use Test\RabbitMqController;
 
 /*
  * ----------------
@@ -46,9 +47,10 @@ $dc = [
  * -----------
  */
 $routes = [
-    'home'      => (new Route('/',            ['controller' => HomeController::class]))->setMethods([Request::METHOD_GET]),
-    'get_user' => (new Route('/users/{name}', ['controller' => UserController::class, 'method' => 'get']))->setMethods([Request::METHOD_GET]),
-    'redis'      => (new Route('/redis/{key}/{value}',      ['controller' => RedisController::class]))->setMethods([Request::METHOD_GET]),
+    'home'       => (new Route('/', ['controller' => HomeController::class]))->setMethods([Request::METHOD_GET]),
+    'get_user'   => (new Route('/users/{name}', ['controller' => UserController::class, 'method' => 'get']))->setMethods([Request::METHOD_GET]),
+    'redis'      => (new Route('/redis/{key}/{value}', ['controller' => RedisController::class]))->setMethods([Request::METHOD_GET]),
+    'rabbitmq'   => (new Route('/rabbitmq', ['controller' => RabbitMqController::class]))->setMethods([Request::METHOD_GET]),
 ];
 
 /*
