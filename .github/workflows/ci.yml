@@ -40,9 +40,15 @@ jobs:
       - name: Wait
         run: sleep 30
 
-      - name: Test App
+      - name: Test Hello World
         run: |
           if ! curl -s http://localhost:8080 | grep -q 'Hello World!'; then
+            exit 1
+          fi
+
+      - name: Test Redis
+        run: |
+          if ! curl -s http://localhost:8080/foo/bar | grep -q 'Redis!'; then
             exit 1
           fi
 
