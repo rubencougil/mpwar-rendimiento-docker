@@ -48,7 +48,7 @@ jobs:
 
       - name: Test Redis
         run: |
-          if ! curl -s http://localhost:8080/foo/bar | grep -q 'Redis!'; then
+          if ! curl -s http://localhost:8080/redis/foo/bar | grep -q 'Redis!'; then
             exit 1
           fi
 
