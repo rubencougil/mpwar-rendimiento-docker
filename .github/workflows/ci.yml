@@ -47,7 +47,7 @@ jobs:
 
 
       - name: Test RabbitMQ
-        run: "if ! curl -s http://localhost:8080/rabbitmq | grep -q 'NOOOOOO!'; then; exit 1; fi"
+        run: "if ! curl -s http://localhost:8080/rabbitmq | grep -q 'RabbitMQ!'; then; exit 1; fi"
 
       - name: Test Blackfire
         run: "docker-compose exec -T blackfire blackfire curl http://nginx:80"
