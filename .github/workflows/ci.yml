@@ -17,7 +17,7 @@ jobs:
       - name: Stop MySql
         run: "sudo service mysql stop"
 
-      - name: Make envfile
+      - name: Create .env file
         uses: SpicyPizza/create-envfile@v1
         with:
           envkey_DEBUG: false
@@ -33,7 +33,6 @@ jobs:
       - name: Run docker-compose
         run: "docker-compose up -d"
 
-
       - name: Composer install
         run: "docker-compose exec -T php composer install -d /code/test"
 
@@ -48,7 +47,7 @@ jobs:
 
 
       - name: Test RabbitMQ
-        run: "if ! curl -s http://localhost:8080/rabbitmq | grep -q 'RabbitMQ!'; then; exit 1; fi"
+        run: "if ! curl -s http://localhost:8080/rabbitmq | grep -q 'NOOOOOO!'; then; exit 1; fi"
 
       - name: Test Blackfire
         run: "docker-compose exec -T blackfire blackfire curl http://nginx:80"
