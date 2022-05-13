@@ -12,6 +12,7 @@ services:
     ports:
       - '3306:3306'
     volumes:
+      - ./ops/mysql:/docker-entrypoint-initdb.d"
       - ./var/mysql:/var/lib/mysql
 
   nginx:
