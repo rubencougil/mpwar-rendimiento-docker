@@ -13,6 +13,9 @@
 
 - Puerto: `3306`
 - Credenciales: `user/password` o `root/password`
+- Schema: `ops/mysql/schema.sql`.
+  - NOTA: Si el esquema no se carga automáticamente, ejecutar:
+  - `cat ./ops/mysql/schema.sql | docker-compose exec -T mysql /usr/bin/mysql -h localhost --protocol=tcp -u user --password=password db`
 
 ---
 ### 2. Nginx
@@ -22,6 +25,7 @@
   - Home: `/`
   - Hi: `/users/[name]`
   - Redis: `redis/[key]/[value]`
+- Config en `ops/nginx/default.conf`
 
 ---
 ### 3. PHP-fpm
@@ -52,7 +56,8 @@
 
 - Puerto: `6379`
 - Para usar redis-cli ejecutar `docker-compose exec redis redis-cli`
-
+- Config en `ops/redis/redis.conf`
+- Para habilitar la persistencia, comentar la línea `save ""` en `ops/redis/redis.conf`
 
 
 
