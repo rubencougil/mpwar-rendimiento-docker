@@ -2,7 +2,6 @@
 
 namespace Test;
 
-use JsonException;
 use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,9 +12,6 @@ class RabbitMqController extends BaseController
     public const EXCHANGE = "test-exchange";
     public const QUEUE = "tests-queue";
 
-    /**
-     * @throws JsonException
-     */
     public function __invoke(Request $request): Response {
 
         /* @var AMQPStreamConnection */
@@ -29,12 +25,12 @@ class RabbitMqController extends BaseController
         $msg = new AMQPMessage(json_encode(["message" => "test"], JSON_THROW_ON_ERROR));
         $ch->basic_publish($msg, self::EXCHANGE);
 
-        $msg = $ch->basic_consume(self::QUEUE, "", false, false, false, false, static function(AMQPMessage $msg) {
+        $consumer = $ch->basic_consume(self::QUEUE, "", false, false, false, false, static function(AMQPMessage $msg) {
             print_r("Msg: {$msg->getBody()}. Got from RabbitMQ!");
             $msg->ack();
         });
 
         $ch->close();
-        return new Response("Msg: $msg. Got from RabbitMQ!", 200);
+        return new Response("Consumer started: $consumer. Got from RabbitMQ!", 200);
     }
 }

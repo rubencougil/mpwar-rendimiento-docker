@@ -64,6 +64,10 @@
 - Puerto: `5672`
 - Dashboard: `http://localhost:15672`
 
-- RabbitMQ: 15672
-- Elasticsearch: 9200
-- Kibana: 5601
+### 7. Elasticsearch
+
+- Puerto: `9200`
+
+### 8. Kibana
+
+- Puerto: `5601`
