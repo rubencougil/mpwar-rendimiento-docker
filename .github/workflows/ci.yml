@@ -17,7 +17,7 @@ jobs:
       - name: Stop MySql
         run: "sudo service mysql stop"
 
-      - name: Make envfile
+      - name: Create .env file
         uses: SpicyPizza/create-envfile@v1
         with:
           envkey_DEBUG: false
@@ -33,18 +33,42 @@ jobs:
       - name: Run docker-compose
         run: "docker-compose up -d"
 
-
       - name: Composer install
         run: "docker-compose exec -T php composer install -d /code/test"
 
       - name: Wait
         run: sleep 30
 
-      - name: Test App
+      - name: Test Hello World
         run: |
           if ! curl -s http://localhost:8080 | grep -q 'Hello World!'; then
             exit 1
           fi
 
-      - name: Profile with Blackfire
-        run: "docker-compose exec -T blackfire blackfire curl http://nginx:80"
+      - name: Test MySQL
+        run: |
+          if ! curl -s http://localhost:8080/mysql | grep -q 'MySQL!'; then
+            exit 1
+          fi
+
+      - name: Test Redis
+        run: |
+          if ! curl -s http://localhost:8080/redis | grep -q 'Redis!'; then
+            exit 1
+          fi
+
+      - name: Test RabbitMQ
+        run: |
+          if ! curl -s http://localhost:8080/rabbitmq | grep -q 'RabbitMQ!'; then
+            exit 1
+          fi
+
+      - name: Test Elasticsearch
+        run: |
+          if ! curl -s http://localhost:8080/elasticsearch | grep -q 'Elasticsearch!'; then
+            exit 1
+          fi
+
+      - name: Test Blackfire
+        run: |
+          docker-compose exec -T blackfire blackfire curl http://nginx:80
