@@ -64,7 +64,9 @@
 ### 7. Elasticsearch
 
 - Puerto: `9200`
+- API Info: `curl http://localhost:9200`
 
 ### 8. Kibana
 
 - Puerto: `5601`
+- Dashboard: `http://localhost:5671`
