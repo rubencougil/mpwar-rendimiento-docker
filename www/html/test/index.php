@@ -20,6 +20,8 @@ use Test\UserController;
 use Test\HomeController;
 use Test\RedisController;
 use Test\RabbitMqController;
+use Test\MySqlController;
+use Test\ElasticsearchController;
 
 /*
  * ----------------
@@ -30,7 +32,7 @@ $mysql = new PDO('mysql:dbname=db;host=mysql', 'user', 'password');
 $redis = new Redis();
 $redis->connect('redis');
 $rabbitmq = new AMQPStreamConnection('rabbitmq', 5672, 'rabbitmq', 'rabbitmq');
-$elasticsearch = $client = ClientBuilder::create()->setHosts(["elasticsearch:9200"])->build();
+$elasticsearch = ClientBuilder::create()->setHosts(["elasticsearch:9200"])->build();
 $guzzle = new GuzzleClient();
 
 $dc = [
@@ -47,10 +49,12 @@ $dc = [
  * -----------
  */
 $routes = [
-    'home'       => (new Route('/', ['controller' => HomeController::class]))->setMethods([Request::METHOD_GET]),
-    'get_user'   => (new Route('/users/{name}', ['controller' => UserController::class, 'method' => 'get']))->setMethods([Request::METHOD_GET]),
-    'redis'      => (new Route('/redis/{key}/{value}', ['controller' => RedisController::class]))->setMethods([Request::METHOD_GET]),
-    'rabbitmq'   => (new Route('/rabbitmq', ['controller' => RabbitMqController::class]))->setMethods([Request::METHOD_GET]),
+    'home'          => (new Route('/', ['controller' => HomeController::class]))->setMethods([Request::METHOD_GET]),
+    'hi'            => (new Route('/hi/{name}', ['controller' => UserController::class, 'method' => 'get']))->setMethods([Request::METHOD_GET]),
+    'redis'         => (new Route('/redis', ['controller' => RedisController::class]))->setMethods([Request::METHOD_GET]),
+    'rabbitmq'      => (new Route('/rabbitmq', ['controller' => RabbitMqController::class]))->setMethods([Request::METHOD_GET]),
+    'mysql'         => (new Route('/mysql', ['controller' => MySqlController::class]))->setMethods([Request::METHOD_GET]),
+    'elasticsearch' => (new Route('/elasticsearch', ['controller' => ElasticsearchController::class]))->setMethods([Request::METHOD_GET]),
 ];
 
 /*

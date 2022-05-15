@@ -10,8 +10,8 @@ class RedisController extends BaseController
 {
     public function __invoke(Request $request): Response
     {
-        $key = $request->attributes->get('key');
-        $value = $request->attributes->get('value');
+        $key = 'key';
+        $value = 'value';
 
         /* @var Redis */
         $redis = $this->dc['redis'];

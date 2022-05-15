@@ -45,9 +45,15 @@ jobs:
             exit 1
           fi
 
+      - name: Test MySQL
+        run: |
+          if ! curl -s http://localhost:8080/mysql | grep -q 'MySQL!'; then
+            exit 1
+          fi
+
       - name: Test Redis
         run: |
-          if ! curl -s http://localhost:8080/redis/foo/bar | grep -q 'Redis!'; then
+          if ! curl -s http://localhost:8080/redis | grep -q 'Redis!'; then
             exit 1
           fi
 
@@ -57,5 +63,12 @@ jobs:
             exit 1
           fi
 
+      - name: Test Elasticsearch
+        run: |
+          if ! curl -s http://localhost:8080/elasticsearch | grep -q 'Elasticsearch!'; then
+            exit 1
+          fi
+
       - name: Test Blackfire
-        run: "docker-compose exec -T blackfire blackfire curl http://nginx:80"
+        run: |
+          docker-compose exec -T blackfire blackfire curl http://nginx:80

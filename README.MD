@@ -21,10 +21,7 @@
 ### 2. Nginx
 
 - Puerto: `8080`
-- Endpoints:  
-  - Home: `/`
-  - Hi: `/users/[name]`
-  - Redis: `redis/[key]/[value]`
+- Endpoints disponibles en `index.php`
 - Config en `ops/nginx/default.conf`
 
 ---
@@ -62,7 +59,7 @@
 ### 6. RabbitMQ
 
 - Puerto: `5672`
-- Dashboard: `http://localhost:15672`
+- Dashboard: `http://localhost:15672`, Login: `rabbitmq/rabbitmq`
 
 ### 7. Elasticsearch
 
