@@ -1,6 +1,6 @@
 # 📖 MPWAR (Rendimiento en Aplicaciones web)
 
-[![Actions Status](https://github.com/rubencougil/mpwar-rendimiento-docker/workflows/Docker%20Image%20CI/badge.svg)](https://github.com/rubencougil/mpwar-rendimiento-docker/actions)
+[![CI](https://github.com/rubencougil/mpwar-rendimiento-docker/actions/workflows/ci.yml/badge.svg)](https://github.com/rubencougil/mpwar-rendimiento-docker/actions/workflows/ci.yml)
 
 ## Instalación
 
