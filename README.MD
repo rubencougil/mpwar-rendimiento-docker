@@ -17,19 +17,16 @@
   - NOTA: Si el esquema no se carga automáticamente, ejecutar:
   - `cat ./ops/mysql/schema.sql | docker-compose exec -T mysql /usr/bin/mysql -h localhost --protocol=tcp -u user --password=password db`
 
----
 ### 2. Nginx
 
 - Puerto: `8080`
 - Endpoints disponibles en `index.php`
 - Config en `ops/nginx/default.conf`
 
----
 ### 3. PHP-fpm
 
 - Dockerfile en `ops/php-fpm/Dockerfile`
 
----
 ### 4. Blackfire
 
 - Puerto: `8307`
@@ -48,7 +45,6 @@
   6. Instalar la [extensión para navegadores](https://blackfire.io/docs/integrations/browsers/index)
   7. Probar la extensión en `http://localhost:8080`
 
----
 ### 5. Redis
 
 - Puerto: `6379`
