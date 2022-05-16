@@ -1,6 +1,6 @@
 # 📖 MPWAR (Rendimiento en Aplicaciones web)
 
-[![CI](https://github.com/rubencougil/mpwar-rendimiento-docker/actions/workflows/ci.yml/badge.svg)](https://github.com/rubencougil/mpwar-rendimiento-docker/actions/workflows/ci.yml)
+[![CI](https://github.com/rubencougil/mpwar-rendimiento/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/rubencougil/mpwar-rendimiento/actions/workflows/ci.yml)
 
 ## Instalación
 
