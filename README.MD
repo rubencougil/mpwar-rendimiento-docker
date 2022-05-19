@@ -32,7 +32,7 @@
 - Puerto: `8307`
 - Pasos para configurar Blackfire:
   1. Crear nueva cuenta en [blackfire.io](https://blackfire.io/)
-  2. Crear un nuevo archivo `.env` en la raíz de este repositorio con el siguiente contenido: 
+  2. Crear un nuevo archivo `.env` (o modificar y renombrar el existente `.env.dist`) en la raíz de este repositorio con el siguiente contenido: 
   ```
   BLACKFIRE_CLIENT_TOKEN=XXX
   BLACKFIRE_CLIENT_ID=XXX
