@@ -1,11 +1,17 @@
 # 📖 MPWAR (Rendimiento en Aplicaciones web)
 
 [![CI](https://github.com/rubencougil/mpwar-rendimiento/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/rubencougil/mpwar-rendimiento/actions/workflows/ci.yml)
+[![Template Sync](https://github.com/rubencougil/mpwar-rendimiento/actions/workflows/template-sync.yml/badge.svg)](https://github.com/rubencougil/mpwar-rendimiento/actions/workflows/template-sync.yml)
 
 ## Instalación
 
 - [Instalar Docker](https://docs.docker.com/install/)
 - Ejecutar `docker-compose up -d`
+
+## Actualizar cambios detectados en este template
+
+Si estás utilizando este template y quieres integrar los últimos cambios, ejecuta el Action de Github llamado "Template Sync". 
+Se abrirá una nueva Pull Request que habrás de mergear manualmente 
 
 ## Servicios
 
