@@ -20,4 +20,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           source_repo_path: rubencougil/mpwar-rendimiento
           upstream_branch: main # defaults to main
-          pr_labels: false # defaults to chore,template-sync
+          pr_labels: enhancement # defaults to chore,template-sync
