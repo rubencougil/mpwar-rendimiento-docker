@@ -10,8 +10,8 @@
 
 ## Actualizar cambios detectados en este template
 
-Si estás utilizando este template y quieres integrar los últimos cambios, ejecuta el Action de Github llamado "Template Sync". 
-Se abrirá una nueva Pull Request que habrás de mergear manualmente 
+Si estás utilizando este template y quieres integrar los últimos cambios, ejecuta el Action de Github llamado `Template Sync`. 
+Se abrirá una nueva Pull Request que habrás de mergear manualmente.
 
 ## Servicios
 
