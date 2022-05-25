@@ -42,7 +42,7 @@
   BLACKFIRE_SERVER_ID=XXX
   ```
   3. Sustituir XXX por los valores reales. Estos datos son únicos por cada usuario, y se obtienen en [el siguiente enlace](https://blackfire.io/my/settings/credentials)
-  4. Parar, eliminar y arrancar el contenedor para que docker-compose cargue las nuevas variables de entorno. 
+  4. Parar, eliminar y arrancar el contenedor para que docker cargue las nuevas variables de entorno. 
      1. `docker-compose stop blackfire`
      2. `docker-compose rm blackfire`
      3. `docker-compose up -d blackfire`
