@@ -26,6 +26,8 @@
 ### 3. PHP-fpm
 
 - Dockerfile en `ops/php-fpm/Dockerfile`
+- Después de levantar el contenedor, es necesario ejecutar:
+  - `docker-compose exec -w "/code/test" php composer install`
 
 ### 4. Blackfire
 
@@ -40,7 +42,10 @@
   BLACKFIRE_SERVER_ID=XXX
   ```
   3. Sustituir XXX por los valores reales. Estos datos son únicos por cada usuario, y se obtienen en [el siguiente enlace](https://blackfire.io/my/settings/credentials)
-  4. Reiniciar el contenedor `docker-compose restart blackfire`
+  4. Parar, eliminar y arrancar el contenedor para que docker-compose cargue las nuevas variables de entorno. 
+     1. `docker-compose stop blackfire`
+     2. `docker-compose rm blackfire`
+     3. `docker-compose up -d blackfire`
   5. Comprobar que el cli funciona correctamente `docker-compose exec blackfire blackfire curl http://nginx:80`
   6. Instalar la [extensión para navegadores](https://blackfire.io/docs/integrations/browsers/index)
   7. Probar la extensión en `http://localhost:8080`
