@@ -1,11 +1,17 @@
 # 📖 MPWAR (Rendimiento en Aplicaciones web)
 
 [![CI](https://github.com/rubencougil/mpwar-rendimiento/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/rubencougil/mpwar-rendimiento/actions/workflows/ci.yml)
+[![Template Sync](https://github.com/rubencougil/mpwar-rendimiento/actions/workflows/template-sync.yml/badge.svg)](https://github.com/rubencougil/mpwar-rendimiento/actions/workflows/template-sync.yml)
 
 ## Instalación
 
 - [Instalar Docker](https://docs.docker.com/install/)
 - Ejecutar `docker-compose up -d`
+
+## Actualizar cambios detectados en este template
+
+Si estás utilizando este template y quieres integrar los últimos cambios, ejecuta el Action de Github llamado "Template Sync". 
+Se abrirá una nueva Pull Request que habrás de mergear manualmente 
 
 ## Servicios
 
@@ -42,7 +48,7 @@
   BLACKFIRE_SERVER_ID=XXX
   ```
   3. Sustituir XXX por los valores reales. Estos datos son únicos por cada usuario, y se obtienen en [el siguiente enlace](https://blackfire.io/my/settings/credentials)
-  4. Parar, eliminar y arrancar el contenedor para que docker-compose cargue las nuevas variables de entorno. 
+  4. Parar, eliminar y arrancar el contenedor para que docker cargue las nuevas variables de entorno. 
      1. `docker-compose stop blackfire`
      2. `docker-compose rm blackfire`
      3. `docker-compose up -d blackfire`
