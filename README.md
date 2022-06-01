@@ -1,3 +1,4 @@
+
 # 📖 MPWAR (Rendimiento en Aplicaciones web)
 
 [![CI](https://github.com/rubencougil/mpwar-rendimiento/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/rubencougil/mpwar-rendimiento/actions/workflows/ci.yml)
@@ -76,4 +77,4 @@ Se abrirá una nueva Pull Request que habrás de mergear manualmente.
 ### 8. Kibana
 
 - Puerto: `5601`
-- Dashboard: `http://localhost:5671`
+- Dashboard: `http://localhost:5601`
